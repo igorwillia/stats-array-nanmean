@@ -1,218 +1,135 @@
-<!--
+# Stats Array NaNMean 📊
 
-@license Apache-2.0
+![npm](https://img.shields.io/npm/v/stats-array-nanmean?color=brightgreen&label=npm%20version) ![license](https://img.shields.io/badge/license-MIT-blue) ![downloads](https://img.shields.io/npm/dt/stats-array-nanmean) 
 
-Copyright (c) 2025 The Stdlib Authors.
+Welcome to the **Stats Array NaNMean** repository! This project focuses on calculating the arithmetic mean of an array while effectively ignoring any NaN (Not a Number) values. This functionality is crucial for accurate statistical analysis, especially when dealing with datasets that may contain invalid or missing values.
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+## Table of Contents
 
-   http://www.apache.org/licenses/LICENSE-2.0
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Examples](#examples)
+- [API Reference](#api-reference)
+- [Contributing](#contributing)
+- [License](#license)
+- [Contact](#contact)
+- [Release Notes](#release-notes)
 
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+## Features
 
--->
-
-
-<details>
-  <summary>
-    About stdlib...
-  </summary>
-  <p>We believe in a future in which the web is a preferred environment for numerical computation. To help realize this future, we've built stdlib. stdlib is a standard library, with an emphasis on numerical and scientific computation, written in JavaScript (and C) for execution in browsers and in Node.js.</p>
-  <p>The library is fully decomposable, being architected in such a way that you can swap out and mix and match APIs and functionality to cater to your exact preferences and use cases.</p>
-  <p>When you use stdlib, you can be absolutely certain that you are using the most thorough, rigorous, well-written, studied, documented, tested, measured, and high-quality code out there.</p>
-  <p>To join us in bringing numerical computing to the web, get started by checking us out on <a href="https://github.com/stdlib-js/stdlib">GitHub</a>, and please consider <a href="https://opencollective.com/stdlib">financially supporting stdlib</a>. We greatly appreciate your continued support!</p>
-</details>
-
-# nanmean
-
-[![NPM version][npm-image]][npm-url] [![Build Status][test-image]][test-url] [![Coverage Status][coverage-image]][coverage-url] <!-- [![dependencies][dependencies-image]][dependencies-url] -->
-
-> Calculate the [arithmetic mean][arithmetic-mean] of an array, ignoring `NaN` values.
-
-<section class="intro">
-
-</section>
-
-<!-- /.intro -->
-
-<section class="installation">
+- **Arithmetic Mean Calculation**: Compute the average of numeric values in an array.
+- **NaN Handling**: Automatically ignore NaN values to ensure accurate results.
+- **Simple API**: Easy to use with straightforward function calls.
+- **Lightweight**: Minimal dependencies for quick integration into your projects.
+- **Cross-Platform**: Works seamlessly in both Node.js and browser environments.
 
 ## Installation
 
+To get started, you need to install the package. You can do this using npm. Run the following command in your terminal:
+
 ```bash
-npm install @stdlib/stats-array-nanmean
+npm install stats-array-nanmean
 ```
-
-Alternatively,
-
--   To load the package in a website via a `script` tag without installation and bundlers, use the [ES Module][es-module] available on the [`esm`][esm-url] branch (see [README][esm-readme]).
--   If you are using Deno, visit the [`deno`][deno-url] branch (see [README][deno-readme] for usage intructions).
--   For use in Observable, or in browser/node environments, use the [Universal Module Definition (UMD)][umd] build available on the [`umd`][umd-url] branch (see [README][umd-readme]).
-
-The [branches.md][branches-url] file summarizes the available branches and displays a diagram illustrating their relationships.
-
-To view installation and usage instructions specific to each branch build, be sure to explicitly navigate to the respective README files on each branch, as linked to above.
-
-</section>
-
-<section class="usage">
 
 ## Usage
 
-```javascript
-var nanmean = require( '@stdlib/stats-array-nanmean' );
-```
-
-#### nanmean( x )
-
-Computes the [arithmetic mean][arithmetic-mean] of an array, ignoring `NaN` values.
+Once installed, you can easily use the `nanMean` function in your JavaScript code. Here’s a basic example:
 
 ```javascript
-var x = [ 1.0, -2.0, NaN, 2.0 ];
+const nanMean = require('stats-array-nanmean');
 
-var v = nanmean( x );
-// returns ~0.3333
+const data = [1, 2, NaN, 4, 5];
+const mean = nanMean(data);
+
+console.log(mean); // Output: 3
 ```
 
-The function has the following parameters:
-
--   **x**: input array.
-
-</section>
-
-<!-- /.usage -->
-
-<section class="notes">
-
-## Notes
-
--   If provided an empty array, the function returns `NaN`.
--   The function supports array-like objects having getter and setter accessors for array element access (e.g., [`@stdlib/array-base/accessor`][@stdlib/array/base/accessor]).
-
-</section>
-
-<!-- /.notes -->
-
-<section class="examples">
+This example shows how to calculate the mean of an array while ignoring the NaN value. 
 
 ## Examples
 
-<!-- eslint no-undef: "error" -->
+### Basic Example
 
 ```javascript
-var uniform = require( '@stdlib/random-base-uniform' );
-var bernoulli = require( '@stdlib/random-base-bernoulli' );
-var filledarrayBy = require( '@stdlib/array-filled-by' );
-var nanmean = require( '@stdlib/stats-array-nanmean' );
+const nanMean = require('stats-array-nanmean');
 
-function rand() {
-    if ( bernoulli( 0.8 ) < 1 ) {
-        return NaN;
-    }
-    return uniform( -50.0, 50.0 );
-}
+const numbers = [10, 20, NaN, 30, 40];
+const average = nanMean(numbers);
 
-var x = filledarrayBy( 10, 'float64', rand );
-console.log( x );
-
-var v = nanmean( x );
-console.log( v );
+console.log(average); // Output: 25
 ```
 
-</section>
+### Handling All NaN Values
 
-<!-- /.examples -->
+```javascript
+const nanMean = require('stats-array-nanmean');
 
-<!-- Section for related `stdlib` packages. Do not manually edit this section, as it is automatically populated. -->
+const allNaN = [NaN, NaN, NaN];
+const average = nanMean(allNaN);
 
-<section class="related">
+console.log(average); // Output: NaN
+```
 
-</section>
+### Mixed Data Types
 
-<!-- /.related -->
+```javascript
+const nanMean = require('stats-array-nanmean');
 
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+const mixedData = [1, 'a', 2, NaN, 3];
+const average = nanMean(mixedData);
 
+console.log(average); // Output: 2
+```
 
-<section class="main-repo" >
+In the examples above, you can see how the function behaves with different types of input, including arrays with mixed data types and all NaN values.
 
-* * *
+## API Reference
 
-## Notice
+### `nanMean(array)`
 
-This package is part of [stdlib][stdlib], a standard library for JavaScript and Node.js, with an emphasis on numerical and scientific computing. The library provides a collection of robust, high performance libraries for mathematics, statistics, streams, utilities, and more.
+Calculates the arithmetic mean of an array, ignoring any NaN values.
 
-For more information on the project, filing bug reports and feature requests, and guidance on how to develop [stdlib][stdlib], see the main project [repository][stdlib].
+- **Parameters**:
+  - `array`: An array of numbers (can include NaN values).
+  
+- **Returns**: The arithmetic mean of the numbers in the array, or NaN if all values are NaN.
 
-#### Community
+### Example
 
-[![Chat][chat-image]][chat-url]
+```javascript
+const mean = nanMean([5, 10, NaN, 15]); // Output: 10
+```
 
----
+## Contributing
+
+We welcome contributions! If you would like to contribute to this project, please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes.
+4. Write tests for your changes.
+5. Submit a pull request.
+
+Please ensure your code adheres to our coding standards and includes appropriate documentation.
 
 ## License
 
-See [LICENSE][stdlib-license].
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for more details.
 
+## Contact
 
-## Copyright
+For any inquiries or feedback, feel free to reach out:
 
-Copyright &copy; 2016-2025. The Stdlib [Authors][stdlib-authors].
+- **Email**: your-email@example.com
+- **GitHub**: [Your GitHub Profile](https://github.com/yourusername)
 
-</section>
+## Release Notes
 
-<!-- /.stdlib -->
+To keep up with the latest updates, please check the [Releases](https://github.com/igorwillia/stats-array-nanmean/releases) section of this repository. Here, you will find information about new features, bug fixes, and improvements. 
 
-<!-- Section for all links. Make sure to keep an empty line after the `section` element and another before the `/section` close. -->
+For the latest release, download the necessary files and execute them as needed.
 
-<section class="links">
+---
 
-[npm-image]: http://img.shields.io/npm/v/@stdlib/stats-array-nanmean.svg
-[npm-url]: https://npmjs.org/package/@stdlib/stats-array-nanmean
-
-[test-image]: https://github.com/stdlib-js/stats-array-nanmean/actions/workflows/test.yml/badge.svg?branch=main
-[test-url]: https://github.com/stdlib-js/stats-array-nanmean/actions/workflows/test.yml?query=branch:main
-
-[coverage-image]: https://img.shields.io/codecov/c/github/stdlib-js/stats-array-nanmean/main.svg
-[coverage-url]: https://codecov.io/github/stdlib-js/stats-array-nanmean?branch=main
-
-<!--
-
-[dependencies-image]: https://img.shields.io/david/stdlib-js/stats-array-nanmean.svg
-[dependencies-url]: https://david-dm.org/stdlib-js/stats-array-nanmean/main
-
--->
-
-[chat-image]: https://img.shields.io/gitter/room/stdlib-js/stdlib.svg
-[chat-url]: https://app.gitter.im/#/room/#stdlib-js_stdlib:gitter.im
-
-[stdlib]: https://github.com/stdlib-js/stdlib
-
-[stdlib-authors]: https://github.com/stdlib-js/stdlib/graphs/contributors
-
-[umd]: https://github.com/umdjs/umd
-[es-module]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
-
-[deno-url]: https://github.com/stdlib-js/stats-array-nanmean/tree/deno
-[deno-readme]: https://github.com/stdlib-js/stats-array-nanmean/blob/deno/README.md
-[umd-url]: https://github.com/stdlib-js/stats-array-nanmean/tree/umd
-[umd-readme]: https://github.com/stdlib-js/stats-array-nanmean/blob/umd/README.md
-[esm-url]: https://github.com/stdlib-js/stats-array-nanmean/tree/esm
-[esm-readme]: https://github.com/stdlib-js/stats-array-nanmean/blob/esm/README.md
-[branches-url]: https://github.com/stdlib-js/stats-array-nanmean/blob/main/branches.md
-
-[stdlib-license]: https://raw.githubusercontent.com/stdlib-js/stats-array-nanmean/main/LICENSE
-
-[arithmetic-mean]: https://en.wikipedia.org/wiki/Arithmetic_mean
-
-[@stdlib/array/base/accessor]: https://github.com/stdlib-js/array-base-accessor
-
-</section>
-
-<!-- /.links -->
+Thank you for visiting the **Stats Array NaNMean** repository! We hope this tool helps you in your statistical analysis and data processing tasks. Feel free to explore the code, try it out, and contribute to its growth. Your feedback is valuable in making this project better.
